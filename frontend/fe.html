@@ -1,0 +1,41 @@
+<v1 class="0">
+    setting difficulty level as a slot, which will be passed in the utterance, the First Time.
+</v1>
+
+<Utterances>
+    start counting till {count} 
+    start counting upto {count}
+    count upto {count}
+    count till {count}
+    start counting till {count} at {difficultyLevel} speed
+    start counting upto {count} at {difficultyLevel} speed
+    count upto {count} at {difficultyLevel} speed
+    count till {count} at {difficultyLevel} speed
+    start counting till {count} with {difficultyLevel} speed
+    start counting upto {count} with {difficultyLevel} speed
+    count upto {count} with {difficultyLevel} speed
+    count till {count} with {difficultyLevel} speed
+</Utterances>
+
+
+<Intent Confirmation>
+you mean {count} , right?
+</Intent>
+
+<Slot Filling>
+Is this slot required to fulfill the intent? YES
+    <questions>
+    Okay, but what number should I count to?
+    I should count till?
+    What should I count upto?
+</questions>
+</Slot>
+
+<UserUtterances>
+okay count till {count}
+count upto {count}
+count till {count}
+{count}
+</UserUtterances>
+
+
