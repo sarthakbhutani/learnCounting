@@ -15,12 +15,24 @@ const GetNewFactHandler = {
     // const factIndex = Math.floor(Math.random() * factArr.length);
     // const randomFact = factArr[factIndex];
     var countnumber = handlerInput.requestEnvelope.request.intent.slots.count.value;
+    
+    //set Difficulty level
+    var difficultyLevel = handlerInput.requestEnvelope.request.intent.slots.difficultyLevel.value;
+    
     var count = ' ' + ' ' + ' ';  //change here
   var speakOutput = "So, I am gonna begin the count "; //+ count + "<break time = \"4s\"/>" + "hey"
     for(var i = 1; i <= countnumber;i++){
     // for(var i = 1; i <= 12;i++){
           // count = count + String(i) + 'n' ;
+          if (difficultyLevel == 'high' )
       speakOutput = speakOutput + String(i) + " <break time = \"1s\"/>" ;
+      
+      else if (difficultyLevel == 'mid' )
+      speakOutput = speakOutput + String(i) + " <break time = \"2s\"/>" ;
+      
+      else if (difficultyLevel == 'low' )
+      speakOutput = speakOutput + String(i) + " <break time = \"4s\"/>" ;
+      
           }
 //    const speechOutput = "So, I am gonna begin the count "+ count + "<break time = \"4s\"/>" + "hey" ;
       const speechOutput = speakOutput;
