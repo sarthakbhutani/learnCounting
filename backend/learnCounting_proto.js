@@ -32,9 +32,10 @@ const GetNewFactHandler = {
       
       else if (difficultyLevel == 'low' )
       speakOutput = speakOutput + String(i) + " <break time = \"4s\"/>" ;
-      
+
       else
       speakOutput = speakOutput + String(i) + " <break time = \"1s\"/>" ;
+      
           }
 //    const speechOutput = "So, I am gonna begin the count "+ count + "<break time = \"4s\"/>" + "hey" ;
       const speechOutput = speakOutput;
