@@ -15,11 +15,25 @@ const GetNewFactHandler = {
     // const factIndex = Math.floor(Math.random() * factArr.length);
     // const randomFact = factArr[factIndex];
     var countnumber = handlerInput.requestEnvelope.request.intent.slots.count.value;
+    
+    //set Difficulty level
+    var difficultyLevel = handlerInput.requestEnvelope.request.intent.slots.difficultyLevel.value;
+    
     var count = ' ' + ' ' + ' ';  //change here
   var speakOutput = "So, I am gonna begin the count "; //+ count + "<break time = \"4s\"/>" + "hey"
     for(var i = 1; i <= countnumber;i++){
     // for(var i = 1; i <= 12;i++){
           // count = count + String(i) + 'n' ;
+          if (difficultyLevel == 'high' )
+      speakOutput = speakOutput + String(i) + " <break time = \"1s\"/>" ;
+      
+      else if (difficultyLevel == 'mid' )
+      speakOutput = speakOutput + String(i) + " <break time = \"2s\"/>" ;
+      
+      else if (difficultyLevel == 'low' )
+      speakOutput = speakOutput + String(i) + " <break time = \"4s\"/>" ;
+      
+      else
       speakOutput = speakOutput + String(i) + " <break time = \"1s\"/>" ;
           }
 //    const speechOutput = "So, I am gonna begin the count "+ count + "<break time = \"4s\"/>" + "hey" ;
@@ -66,8 +80,10 @@ const SessionEndedRequestHandler = {
   },
   handle(handlerInput) {
     console.log(`Session ended with reason: ${handlerInput.requestEnvelope.request.reason}`);
-
-    return handlerInput.responseBuilder.getResponse();
+    return handlerInput.responseBuilder
+      .speak('bye!')
+      .withShouldEndSession(true)
+      .getResponse();
   },
 };
 
@@ -79,8 +95,9 @@ const ErrorHandler = {
     console.log(`Error handled: ${error.message}`);
 
     return handlerInput.responseBuilder
-      .speak('Sorry, an error occurred.')
-      .reprompt('Sorry, an error occurred.')
+      .speak('If you would like to ask alexa to count please use phrases like Alexa open learn count and count till 100 at high speed')
+      .withShouldEndSession(true)
+      // .reprompt('Sorry, an error occurred.')
       .getResponse();
   },
 };
