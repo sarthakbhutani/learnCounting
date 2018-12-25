@@ -32,16 +32,22 @@ const GetNewFactHandler = {
       
       else if (difficultyLevel == 'low' )
       speakOutput = speakOutput + String(i) + " <break time = \"4s\"/>" ;
-
+      
       else
       speakOutput = speakOutput + String(i) + " <break time = \"1s\"/>" ;
-      
           }
 //    const speechOutput = "So, I am gonna begin the count "+ count + "<break time = \"4s\"/>" + "hey" ;
       const speechOutput = speakOutput;
+      
+      //creating home card
+      // var SimpleCard;
+      // SimpleCard.setTitle('Learn Counting me boii');
+      // SimpleCard.setContent('Learn Counting me boii content'); 
+      
     return handlerInput.responseBuilder
       .speak(speechOutput)
-      .withSimpleCard(SKILL_NAME)
+      .withSimpleCard("Hi! So, I will count till " + countnumber + ". Please follow along")
+      // .SpeechletResponse.newTellResponse()
       .getResponse();
   },
 };
