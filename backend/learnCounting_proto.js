@@ -40,13 +40,15 @@ const GetNewFactHandler = {
       const speechOutput = speakOutput;
       
       //creating home card
+      var cardTitle = 'Learn Counting!!';
+      var cardContent = "Hi! So, I will count till " + countnumber + ". Please follow along";
       // var SimpleCard;
       // SimpleCard.setTitle('Learn Counting me boii');
       // SimpleCard.setContent('Learn Counting me boii content'); 
       
     return handlerInput.responseBuilder
       .speak(speechOutput)
-      .withSimpleCard("Hi! So, I will count till " + countnumber + ". Please follow along")
+      .withSimpleCard( cardTitle, cardContent)
       // .SpeechletResponse.newTellResponse()
       .getResponse();
   },
@@ -59,9 +61,13 @@ const HelpHandler = {
       && request.intent.name === 'AMAZON.HelpIntent';
   },
   handle(handlerInput) {
+     var cardTitle = 'Learn Counting!!';
+      var cardContent = 'You can say ask me to learn to count, or, you can say exit... What can I help you with?'
+    
     return handlerInput.responseBuilder
       .speak(HELP_MESSAGE)
       .reprompt(HELP_REPROMPT)
+      .withSimpleCard( cardTitle, cardContent)
       .getResponse();
   },
 };
@@ -74,8 +80,12 @@ const ExitHandler = {
         || request.intent.name === 'AMAZON.StopIntent');
   },
   handle(handlerInput) {
+    var cardTitle = 'Bye!';
+    var cardContent = "See you next time";
+     
     return handlerInput.responseBuilder
       .speak(STOP_MESSAGE)
+      .withSimpleCard( cardTitle, cardContent)
       .getResponse();
   },
 };
@@ -86,10 +96,13 @@ const SessionEndedRequestHandler = {
     return request.type === 'SessionEndedRequest';
   },
   handle(handlerInput) {
+    var cardTitle = 'Learn Counting says.';
+    var cardContent = 'GoodBye!';
     console.log(`Session ended with reason: ${handlerInput.requestEnvelope.request.reason}`);
     return handlerInput.responseBuilder
       .speak('bye!')
       .withShouldEndSession(true)
+      .withSimpleCard( cardTitle, cardContent)
       .getResponse();
   },
 };
@@ -100,10 +113,12 @@ const ErrorHandler = {
   },
   handle(handlerInput, error) {
     console.log(`Error handled: ${error.message}`);
-
+    var cardTitle = 'Learn Counting';
+    var cardContent = ' You can ask :  Alexa open learn count and count till 100 at high speed';
     return handlerInput.responseBuilder
       .speak('If you would like to ask alexa to count please use phrases like Alexa open learn count and count till 100 at high speed')
       .withShouldEndSession(true)
+      .withSimpleCard( cardTitle, cardContent)
       // .reprompt('Sorry, an error occurred.')
       .getResponse();
   },
@@ -111,7 +126,7 @@ const ErrorHandler = {
 
 const SKILL_NAME = 'Learn Counting';
 // const GET_FACT_MESSAGE = 'Here\'s your fact: ';
-const HELP_MESSAGE = 'You can say tell me a space fact, or, you can say exit... What can I help you with?';
+const HELP_MESSAGE = 'You can say ask me to learn to count, or, you can say exit... What can I help you with?';
 const HELP_REPROMPT = 'What can I help you with?';
 const STOP_MESSAGE = 'Goodbye!';
 
